@@ -37,11 +37,25 @@ module Actions
 
     end
 
-    def position_is_valid(state, next_position)
-    
+    def position_is_valid(state, position)
+        # Verificar que este dentro del grid
+        is_invalid = ((position.x < 0 || position.x >= state.grid.cols) ||
+            (position.y < 0 || position.y >= state.grid.rows))
+        return false if is_invalid
+        # Verificar que no se superponga a la serpiente
+        return !(state.snake.positions.include? position)
     end
 
-    def move_snake_to
+    def move_snake_to(state, next_position)
+        #
+        new_positions = [next_position] + state.snake.positions[0...-1]
+        state.snake.positions = new_positions
+        state
+    end
+
+    def end_game
+        state.game_finished = true
+        state
     end
     
 end
