@@ -21,6 +21,13 @@ module View
         private
 
         def render_food(state)
+            extend Ruby2D::DSL
+            Square.new(
+                x: state.food.x * @pixel_size,
+                y: state.food.y * @pixel_size,
+                size: @pixel_size,
+                color: 'yellow'
+            )
         end
 
         def render_snake(state)
