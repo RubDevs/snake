@@ -6,23 +6,27 @@ module View
             @pixel_size = 50
         end
 
-        def render(state)
+        def start(state)
             extend Ruby2D::DSL
             set(
                 title: "Snake", 
                 width: @pixel_size * state.grid.cols, 
                 height: @pixel_size * state.grid.rows
             )
+            show
+        end
+
+        def render(state)
             render_food(state)
             render_snake(state)
-            show
         end
 
         private
 
         def render_food(state)
+            @food.remove if @food
             extend Ruby2D::DSL
-            Square.new(
+            @food = Square.new(
                 x: state.food.x * @pixel_size,
                 y: state.food.y * @pixel_size,
                 size: @pixel_size,
@@ -31,9 +35,10 @@ module View
         end
 
         def render_snake(state)
+            @snake_positions.each(&:remove) if @snake_positions
             extend Ruby2D::DSL
             snake = state.snake
-            snake.positions.each do |pos| 
+            @snake_positions = snake.positions.map do |pos| 
                 Square.new(
                     x: pos.x * @pixel_size,
                     y: pos.y * @pixel_size,
