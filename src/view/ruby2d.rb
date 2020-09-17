@@ -13,6 +13,9 @@ module View
                 width: @pixel_size * state.grid.cols, 
                 height: @pixel_size * state.grid.rows
             )
+            on :key_down do |event|
+                handle_key
+            end
             show
         end
 
