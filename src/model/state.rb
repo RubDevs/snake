@@ -19,7 +19,7 @@ module Model
     class Grid < Struct.new(:rows,:cols)
     end
 
-    class State < Struct.new(:snake,:food,:grid, :current_direction, :game_finished)
+    class State < Struct.new(:snake,:food,:grid, :current_direction, :game_finished, :speed)
     end
 
     def self.initial_state
@@ -31,7 +31,8 @@ module Model
             Model::Food.new(4,4),
             Model::Grid.new(16,24),
             Direction::RIGHT,
-            false
+            false,
+            2.0
         )
     end
 end

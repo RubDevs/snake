@@ -5,6 +5,7 @@ module Actions
         # Verify if next place is food
         if position_is_food?(state,next_position)
             state = grow_snake(state,next_position)
+            state = increase_speed(state)
             new_food(state)
         # Verify next place is valid
         elsif position_is_valid?(state, next_position)
@@ -65,6 +66,11 @@ module Actions
 
     def self.grow_snake(state, next_position)
         state.snake.positions = [next_position] + state.snake.positions
+        state
+    end
+
+    def self.increase_speed(state)
+        state.speed += 1
         state
     end
 

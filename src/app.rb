@@ -17,7 +17,7 @@ class App
         loop do
             @state = Actions::move_snake(@state)
             view.render(@state)
-            sleep 0.5
+            sleep 1/@state.speed
             # trigger movement
         end
     end
