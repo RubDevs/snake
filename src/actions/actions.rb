@@ -59,14 +59,11 @@ module Actions
     end
 
     def self.position_is_food?(state, next_direction)
-        return true if ( state.food.x == next_direction.x && state.food.y == next_direction.y )
-        return false
-            
+        state.food.x == next_direction.x && state.food.y == next_direction.y 
     end
 
     def self.grow_snake(state, next_position)
-        new_snake_positions = [next_position] + state.snake.positions
-        state.snake.positions = new_snake_positions
+        state.snake.positions = [next_position] + state.snake.positions
         state
     end
 
