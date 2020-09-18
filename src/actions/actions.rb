@@ -4,7 +4,8 @@ module Actions
         next_position = calc_next_position(state)
         # Verify if next place is food
         if position_is_food?(state,next_position)
-            grow_snake(state,next_position)
+            state = grow_snake(state,next_position)
+            new_food(state)
         # Verify next place is valid
         elsif position_is_valid?(state, next_position)
             move_snake_to(state,next_position)
@@ -64,6 +65,12 @@ module Actions
 
     def self.grow_snake(state, next_position)
         state.snake.positions = [next_position] + state.snake.positions
+        state
+    end
+
+    def self.new_food(state)
+        new_food = Model::Food.new(rand(state.grid.cols), rand(state.grid.rows))
+        state.food = new_food
         state
     end
 
