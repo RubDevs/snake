@@ -4,7 +4,7 @@ Proyecto del curso de Ruby de Platzi, mejoras implementadas (aumento de velocida
 
 ## Proyecto
 
-![demo](/assets/snake_demo.gif)
+![demo](/assets/snake.gif)
 
 1. `cd snake && bundle install`
 1. `bundle exec ruby src/app.rb`
